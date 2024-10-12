@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -21,10 +22,6 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/about", aboutHandler)
 	http.HandleFunc("/contact", contactHandler)
-	error := http.ListenAndServe(":8080", nil)
-	if error != nil {
-		fmt.Printf("An error has occured while starting the HTTP server: %s\n", error)
-		return;
-	}
 	fmt.Println("HTTP server has been successfully started and is running on port 8080.....")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
